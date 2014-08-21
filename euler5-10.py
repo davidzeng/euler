@@ -1,0 +1,67 @@
+import math
+import utils
+
+def prob10():
+    primes = [2, 3, 5, 7, 11, 13]
+    num = 15
+    while primes[-1] < 2000000:
+        if utils.is_prime(num, primes):
+            primes.append(num)
+        num += 2
+    return sum(primes[:-1])
+
+print prob10()
+
+def prob9():
+    for i in xrange(1, 1000):
+        for j in xrange(1, 1000):
+            if is_1000_triple(i, j):
+                return is_1000_triple(i, j)
+    return '???'
+
+def is_1000_triple(a, b):
+    ab = a * a + b * b
+    c = math.sqrt(ab) % 1 == 0
+    if c and ab != 1000:
+        c_num = math.sqrt(ab)
+        if a + b + c_num == 1000:
+            return a * b * c_num
+    return False
+
+# print prob9()
+
+def prob8():
+    foo = '7316717653133062491922511967442657474235534919493496983520312774506326239578318016984801869478851843858615607891129494954595017379583319528532088055111254069874715852386305071569329096329522744304355766896648950445244523161731856403098711121722383113622298934233803081353362766142828064444866452387493035890729629049156044077239071381051585930796086670172427121883998797908792274921901699720888093776657273330010533678812202354218097512545405947522435258490771167055601360483958644670632441572215539753697817977846174064955149290862569321978468622482839722413756570560574902614079729686524145351004748216637048440319989000889524345065854122758866688116427171479924442928230863465674813919123162824586178664583591245665294765456828489128831426076900422421902267105562632111110937054421750694165896040807198403850962455444362981230987879927244284909188845801561660979191338754992005240636899125607176060588611646710940507754100225698315520005593572972571636269561882670428252483600823257530420752963450'
+    max_prod = 0
+    for i in xrange(len(foo) - 13):
+        prod = 1
+        for j in xrange(13):
+            prod *= int(foo[i + j])
+        if prod > max_prod:
+            max_prod = prod
+    return max_prod
+
+# print prob8()
+
+def prob7():
+    primes = [2, 3, 5, 7, 11, 13]
+    counter = 15
+    while len(primes) < 10001:
+        if is_prime(counter, primes):
+            primes.append(counter)
+        counter += 2
+    print primes
+    return primes[-1]
+
+# print prob7()
+
+def prob6():
+    sum_squared = 0
+    squared_sum = 0
+    for i in xrange(1, 101):
+        sum_squared += i * i
+        squared_sum += i
+    return squared_sum * squared_sum - sum_squared
+
+# print prob6()
+
