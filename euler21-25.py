@@ -3,6 +3,24 @@ import utils
 
 string_map = dict([(l, i+1) for i, l in enumerate(string.uppercase)])
 
+def prob25():
+    last_prev = (89, 2)
+    prev = (144, 3)
+    counter = 12
+    while prev[1] < 1000:
+        next = last_prev[0] + prev[0]
+        if len(str(next)) > len(str(prev[0])):
+            # next digit has been made
+            last_prev = (int(str(prev[0])[:10]), prev[1])
+            prev = (int(str(next)[:11]), prev[1] + 1)
+        else:
+            last_prev = prev
+            prev = (next, prev[1])
+        counter += 1
+    return counter
+
+print prob25()
+
 def is_reversed(lst):
 	for i in xrange(len(lst) - 1):
 		if lst[i] < lst[i+1]:
@@ -22,7 +40,7 @@ def get_next(nums):
 	return next_perm1(nums)
 	
 def next_perm1(nums):
-	if len(nums) == 1:
+        if len(nums) == 1:
 		return None
 	if len(nums) == 2:
 		if nums[0] < nums[1]:
@@ -31,7 +49,7 @@ def next_perm1(nums):
 	first = nums[0]
 	rest = next_perm1(nums[1:])
 	if rest:
-		return [first] + rest  
+		return [first] + rest
 	# rest fully reversed
 	next_num = next_largest(first, nums[1:])
 	if not next_num: # everything fully reversed
@@ -48,7 +66,7 @@ def prob24():
 		nums = get_next(nums)
 	return nums
 	
-print prob24()
+# print prob24()
 
 def is_abundant(n):
 	return n < sum(set(utils.find_factors(n)))
